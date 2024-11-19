@@ -36,8 +36,8 @@ class PingPongService(val rabbitTemplate: RabbitTemplate) {
 
     @RabbitListener(bindings = [
         QueueBinding(
-            exchange = Exchange(value = KOTLIN_SERVICE_EXCHANGE_NAME, durable = "false"),
-            value = Queue(value = "$KOTLIN_SERVICE_EXCHANGE_NAME/$Q2_ROUTING_KEY"),
+            exchange = Exchange(value = KOTLIN_SERVICE_EXCHANGE_NAME),
+            value = Queue(value = "$KOTLIN_SERVICE_EXCHANGE_NAME/$Q2_ROUTING_KEY", durable = "false"),
             key = [Q2_ROUTING_KEY]
         )])
     @Timed
