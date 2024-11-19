@@ -40,12 +40,11 @@ class PingPongService(val rabbitTemplate: RabbitTemplate) {
 
         if ((message == PING_MESSAGE)) {
             publishMessage(PONG_MESSAGE)
-        } else {
             try {
                 Thread.sleep(10000) // 10-second delay
             } catch (e: InterruptedException) {
                 Thread.currentThread().interrupt()
-                System.err.println("Thread interrupted: " + e.message)
+                log.error("Thread interrupted: $e.message")
             }
 
             publishMessage(PING_MESSAGE)
