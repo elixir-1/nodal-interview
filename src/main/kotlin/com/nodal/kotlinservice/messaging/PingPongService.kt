@@ -10,10 +10,17 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
 
+/**
+ * PingPongService contains a RabbitListener and Publisher methods for "ping" and "pong" messages.
+ * It will consume a "ping" message and publish a "pong"
+ * It will wait for a 10 seconds delay and publish a "ping"
+ */
+
 @Service
 class PingPongService(val rabbitTemplate: RabbitTemplate) {
 
     companion object {
+        // Define the Exchange name and Routing Key for RabbitMQ
         const val JAVA_SERVICE_EXCHANGE_NAME = "com.javaservice.exchange"
         const val KOTLIN_SERVICE_EXCHANGE_NAME = "com.kotlinservice.exchange"
         const val Q2_ROUTING_KEY = "queue2.routing.key"
